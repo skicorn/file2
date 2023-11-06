@@ -1,0 +1,36 @@
+﻿@model IEnumerable<ThreeSome.Models.GENRE>
+
+@{
+    ViewBag.Title = "GenrePage";
+    Layout = "~/Areas/ADMIN/Views/Shared/adminlayout.cshtml";
+}
+
+<h2>GenrePage</h2>
+
+<p>
+    @Html.ActionLink("Tạo mới thể loại", "Create","Genre")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.genreName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.genreName)
+        </td>
+		<td>
+			<a href="@Url.Action("Edit","Genre", new { id=item.genreID})">
+				<img src="~/Content/Img/edit.png" />
+			</a>
+			<a href="@Url.Action("Delete","Genre", new { id=item.genreID})">
+				<img src="~/Content/Img/delete.png" />
+			</a>
+		</td>
+    </tr>
+}
+</table>

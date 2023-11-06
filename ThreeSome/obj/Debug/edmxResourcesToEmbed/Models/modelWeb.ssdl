@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DATAWEBPHIMModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="EPISODES">
+    <Key>
+      <PropertyRef Name="epID" />
+    </Key>
+    <Property Name="epID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="epURL" Type="nvarchar(max)" />
+    <Property Name="epNum" Type="int" />
+    <Property Name="movie_ID" Type="int" />
+  </EntityType>
+  <EntityType Name="GENRE">
+    <Key>
+      <PropertyRef Name="genreID" />
+    </Key>
+    <Property Name="genreID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="genreName" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="MOVIE">
+    <Key>
+      <PropertyRef Name="movieId" />
+    </Key>
+    <Property Name="movieId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="movieName" Type="nvarchar" MaxLength="100" />
+    <Property Name="movieThumb" Type="nvarchar(max)" />
+    <Property Name="movieDes" Type="nvarchar(max)" />
+    <Property Name="movieView" Type="int" />
+    <Property Name="movieStatus" Type="int" />
+    <Property Name="movieGenre" Type="int" />
+    <Property Name="movieURL" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="MOVSTATUS">
+    <Key>
+      <PropertyRef Name="statusID" />
+    </Key>
+    <Property Name="statusID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="statusName" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="USERS">
+    <Key>
+      <PropertyRef Name="userID" />
+    </Key>
+    <Property Name="userID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="userName" Type="nvarchar" MaxLength="100" />
+    <Property Name="userPass" Type="nvarchar(max)" />
+    <Property Name="userRole" Type="nvarchar" MaxLength="50" />
+    <Property Name="userLikeMov" Type="int" />
+    <Property Name="userType_ID" Type="int" />
+  </EntityType>
+  <EntityType Name="USERTYPE">
+    <Key>
+      <PropertyRef Name="ustype_id" />
+    </Key>
+    <Property Name="ustype_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ustype_name" Type="varchar" MaxLength="256" />
+  </EntityType>
+  <Association Name="FK__EPISODES__movie___49C3F6B7">
+    <End Role="MOVIE" Type="Self.MOVIE" Multiplicity="0..1" />
+    <End Role="EPISODES" Type="Self.EPISODES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MOVIE">
+        <PropertyRef Name="movieId" />
+      </Principal>
+      <Dependent Role="EPISODES">
+        <PropertyRef Name="movie_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__MOVIE__movieGenr__4AB81AF0">
+    <End Role="GENRE" Type="Self.GENRE" Multiplicity="0..1" />
+    <End Role="MOVIE" Type="Self.MOVIE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GENRE">
+        <PropertyRef Name="genreID" />
+      </Principal>
+      <Dependent Role="MOVIE">
+        <PropertyRef Name="movieGenre" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__MOVIE__movieStat__4D94879B">
+    <End Role="MOVSTATUS" Type="Self.MOVSTATUS" Multiplicity="0..1" />
+    <End Role="MOVIE" Type="Self.MOVIE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MOVSTATUS">
+        <PropertyRef Name="statusID" />
+      </Principal>
+      <Dependent Role="MOVIE">
+        <PropertyRef Name="movieStatus" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__USERS__userLikeM__45F365D3">
+    <End Role="MOVIE" Type="Self.MOVIE" Multiplicity="0..1" />
+    <End Role="USERS" Type="Self.USERS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MOVIE">
+        <PropertyRef Name="movieId" />
+      </Principal>
+      <Dependent Role="USERS">
+        <PropertyRef Name="userLikeMov" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__USERS__userType___46E78A0C">
+    <End Role="USERTYPE" Type="Self.USERTYPE" Multiplicity="0..1" />
+    <End Role="USERS" Type="Self.USERS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USERTYPE">
+        <PropertyRef Name="ustype_id" />
+      </Principal>
+      <Dependent Role="USERS">
+        <PropertyRef Name="userType_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DATAWEBPHIMModelStoreContainer">
+    <EntitySet Name="EPISODES" EntityType="Self.EPISODES" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GENRE" EntityType="Self.GENRE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MOVIE" EntityType="Self.MOVIE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MOVSTATUS" EntityType="Self.MOVSTATUS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="USERS" EntityType="Self.USERS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="USERTYPE" EntityType="Self.USERTYPE" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__EPISODES__movie___49C3F6B7" Association="Self.FK__EPISODES__movie___49C3F6B7">
+      <End Role="MOVIE" EntitySet="MOVIE" />
+      <End Role="EPISODES" EntitySet="EPISODES" />
+    </AssociationSet>
+    <AssociationSet Name="FK__MOVIE__movieGenr__4AB81AF0" Association="Self.FK__MOVIE__movieGenr__4AB81AF0">
+      <End Role="GENRE" EntitySet="GENRE" />
+      <End Role="MOVIE" EntitySet="MOVIE" />
+    </AssociationSet>
+    <AssociationSet Name="FK__MOVIE__movieStat__4D94879B" Association="Self.FK__MOVIE__movieStat__4D94879B">
+      <End Role="MOVSTATUS" EntitySet="MOVSTATUS" />
+      <End Role="MOVIE" EntitySet="MOVIE" />
+    </AssociationSet>
+    <AssociationSet Name="FK__USERS__userLikeM__45F365D3" Association="Self.FK__USERS__userLikeM__45F365D3">
+      <End Role="MOVIE" EntitySet="MOVIE" />
+      <End Role="USERS" EntitySet="USERS" />
+    </AssociationSet>
+    <AssociationSet Name="FK__USERS__userType___46E78A0C" Association="Self.FK__USERS__userType___46E78A0C">
+      <End Role="USERTYPE" EntitySet="USERTYPE" />
+      <End Role="USERS" EntitySet="USERS" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,42 @@
+﻿@model ThreeSome.Models.USER
+
+@{
+    ViewBag.Title = "Thông tin user";
+    Layout = "~/Areas/ADMIN/Views/Shared/adminlayout.cshtml";
+}
+
+<h2>Info</h2>
+
+<div>
+    <h4>USER</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.userName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.userName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.userPass)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.userPass)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.userRole)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.userRole)
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.userID }) |
+    @Html.ActionLink("Back to List", "UserPage")
+</p>

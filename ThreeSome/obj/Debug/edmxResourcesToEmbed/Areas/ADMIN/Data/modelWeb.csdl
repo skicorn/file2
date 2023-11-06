@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DATAWEBPHIMModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="EPISODE">
+    <Key>
+      <PropertyRef Name="epID" />
+    </Key>
+    <Property Name="epID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="epURL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="epNum" Type="Int32" />
+    <Property Name="movie_ID" Type="Int32" />
+    <NavigationProperty Name="MOVIE" Relationship="Self.FK__EPISODES__movie___49C3F6B7" FromRole="EPISODES" ToRole="MOVIE" />
+  </EntityType>
+  <EntityType Name="GENRE">
+    <Key>
+      <PropertyRef Name="genreID" />
+    </Key>
+    <Property Name="genreID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="genreName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="MOVIEs" Relationship="Self.FK__MOVIE__movieGenr__4AB81AF0" FromRole="GENRE" ToRole="MOVIE" />
+  </EntityType>
+  <EntityType Name="MOVIE">
+    <Key>
+      <PropertyRef Name="movieId" />
+    </Key>
+    <Property Name="movieId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="movieName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="movieThumb" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="movieDes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="movieView" Type="Int32" />
+    <Property Name="movieStatus" Type="Int32" />
+    <Property Name="movieGenre" Type="Int32" />
+    <Property Name="movieURL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="EPISODES" Relationship="Self.FK__EPISODES__movie___49C3F6B7" FromRole="MOVIE" ToRole="EPISODES" />
+    <NavigationProperty Name="GENRE" Relationship="Self.FK__MOVIE__movieGenr__4AB81AF0" FromRole="MOVIE" ToRole="GENRE" />
+    <NavigationProperty Name="MOVSTATU" Relationship="Self.FK__MOVIE__movieStat__4D94879B" FromRole="MOVIE" ToRole="MOVSTATUS" />
+    <NavigationProperty Name="USERS" Relationship="Self.FK__USERS__userLikeM__45F365D3" FromRole="MOVIE" ToRole="USERS" />
+  </EntityType>
+  <EntityType Name="MOVSTATU">
+    <Key>
+      <PropertyRef Name="statusID" />
+    </Key>
+    <Property Name="statusID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="statusName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="MOVIEs" Relationship="Self.FK__MOVIE__movieStat__4D94879B" FromRole="MOVSTATUS" ToRole="MOVIE" />
+  </EntityType>
+  <EntityType Name="USER">
+    <Key>
+      <PropertyRef Name="userID" />
+    </Key>
+    <Property Name="userID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="userName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="userPass" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="userRole" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="userLikeMov" Type="Int32" />
+    <Property Name="userType_ID" Type="Int32" />
+    <NavigationProperty Name="MOVIE" Relationship="Self.FK__USERS__userLikeM__45F365D3" FromRole="USERS" ToRole="MOVIE" />
+    <NavigationProperty Name="USERTYPE" Relationship="Self.FK__USERS__userType___46E78A0C" FromRole="USERS" ToRole="USERTYPE" />
+  </EntityType>
+  <EntityType Name="USERTYPE">
+    <Key>
+      <PropertyRef Name="ustype_id" />
+    </Key>
+    <Property Name="ustype_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ustype_name" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="USERS" Relationship="Self.FK__USERS__userType___46E78A0C" FromRole="USERTYPE" ToRole="USERS" />
+  </EntityType>
+  <Association Name="FK__EPISODES__movie___49C3F6B7">
+    <End Role="MOVIE" Type="Self.MOVIE" Multiplicity="0..1" />
+    <End Role="EPISODES" Type="Self.EPISODE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MOVIE">
+        <PropertyRef Name="movieId" />
+      </Principal>
+      <Dependent Role="EPISODES">
+        <PropertyRef Name="movie_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__MOVIE__movieGenr__4AB81AF0">
+    <End Role="GENRE" Type="Self.GENRE" Multiplicity="0..1" />
+    <End Role="MOVIE" Type="Self.MOVIE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GENRE">
+        <PropertyRef Name="genreID" />
+      </Principal>
+      <Dependent Role="MOVIE">
+        <PropertyRef Name="movieGenre" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__MOVIE__movieStat__4D94879B">
+    <End Role="MOVSTATUS" Type="Self.MOVSTATU" Multiplicity="0..1" />
+    <End Role="MOVIE" Type="Self.MOVIE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MOVSTATUS">
+        <PropertyRef Name="statusID" />
+      </Principal>
+      <Dependent Role="MOVIE">
+        <PropertyRef Name="movieStatus" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__USERS__userLikeM__45F365D3">
+    <End Role="MOVIE" Type="Self.MOVIE" Multiplicity="0..1" />
+    <End Role="USERS" Type="Self.USER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MOVIE">
+        <PropertyRef Name="movieId" />
+      </Principal>
+      <Dependent Role="USERS">
+        <PropertyRef Name="userLikeMov" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__USERS__userType___46E78A0C">
+    <End Role="USERTYPE" Type="Self.USERTYPE" Multiplicity="0..1" />
+    <End Role="USERS" Type="Self.USER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USERTYPE">
+        <PropertyRef Name="ustype_id" />
+      </Principal>
+      <Dependent Role="USERS">
+        <PropertyRef Name="userType_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DATAWEBPHIMEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="EPISODES" EntityType="Self.EPISODE" />
+    <EntitySet Name="GENREs" EntityType="Self.GENRE" />
+    <EntitySet Name="MOVIEs" EntityType="Self.MOVIE" />
+    <EntitySet Name="MOVSTATUS" EntityType="Self.MOVSTATU" />
+    <EntitySet Name="USERS" EntityType="Self.USER" />
+    <EntitySet Name="USERTYPEs" EntityType="Self.USERTYPE" />
+    <AssociationSet Name="FK__EPISODES__movie___49C3F6B7" Association="Self.FK__EPISODES__movie___49C3F6B7">
+      <End Role="MOVIE" EntitySet="MOVIEs" />
+      <End Role="EPISODES" EntitySet="EPISODES" />
+    </AssociationSet>
+    <AssociationSet Name="FK__MOVIE__movieGenr__4AB81AF0" Association="Self.FK__MOVIE__movieGenr__4AB81AF0">
+      <End Role="GENRE" EntitySet="GENREs" />
+      <End Role="MOVIE" EntitySet="MOVIEs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__MOVIE__movieStat__4D94879B" Association="Self.FK__MOVIE__movieStat__4D94879B">
+      <End Role="MOVSTATUS" EntitySet="MOVSTATUS" />
+      <End Role="MOVIE" EntitySet="MOVIEs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__USERS__userLikeM__45F365D3" Association="Self.FK__USERS__userLikeM__45F365D3">
+      <End Role="MOVIE" EntitySet="MOVIEs" />
+      <End Role="USERS" EntitySet="USERS" />
+    </AssociationSet>
+    <AssociationSet Name="FK__USERS__userType___46E78A0C" Association="Self.FK__USERS__userType___46E78A0C">
+      <End Role="USERTYPE" EntitySet="USERTYPEs" />
+      <End Role="USERS" EntitySet="USERS" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

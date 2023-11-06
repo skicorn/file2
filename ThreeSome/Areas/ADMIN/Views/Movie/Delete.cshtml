@@ -1,0 +1,81 @@
+﻿@model ThreeSome.Models.MOVIE
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/ADMIN/Views/Shared/adminlayout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>BẠN CÓ CHẮC MUỐN XÓA KHÔNG?</h3>
+<div>
+    <h4>THÔNG TIN PHIM</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.movieName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.movieName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.movieThumb)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.movieThumb)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.movieDes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.movieDes)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.movieView)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.movieView)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.movieStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.movieStatus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.movieGenre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.movieGenre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.movieURL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.movieURL)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

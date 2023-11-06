@@ -1,5 +1,26 @@
-﻿@{
-    ViewBag.Title = "Home Page";
-    Layout = "~/Views/Shared/_FilmLayout.cshtml";
+﻿@model IEnumerable<ThreeSome.Models.MOVIE>
+@{
+	ViewBag.Title = "Index";
+	Layout = "~/Views/Shared/_FilmLayout.cshtml";
 }
-<img src="~/Content/Img/crytsal-blue-cube-4k-ku.jpg" />
+<link href="~/Content/Css/trending.css" rel="stylesheet" />
+<link href="~/Content/Css/Main.css" rel="stylesheet" />
+<div class="container">
+	<div class="row">
+		@foreach (var item in Model)
+		{
+			<a href="@Url.Action("Video", "Video", new {id = item.movieId})">
+				<div class="col">
+					<img class="size-img" src="@Url.Content(item.movieThumb)" alt="" />
+					<div class="box-video">
+						<p class="card-title">@Url.Content(item.movieName)</p>
+						<p class="card-title-view">@item.movieView</p><span>view</span>
+					</div>
+					<div>
+						<input type="button" name="like"/>
+					</div>
+				</div>
+			</a>
+		}
+	</div>
+</div>

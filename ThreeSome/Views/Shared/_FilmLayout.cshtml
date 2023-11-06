@@ -36,7 +36,9 @@
 <body>
     <div class="main">
         <div class="div-header">
-            <a href="About"><img id="logo" src="~/Content/Img/3sumteam.png" /></a>
+            <a href="@Url.Action("Index","Home")">
+            <img id="logo" src="~/Content/Img/3sumteam.png" />
+            </a>
             <div class="search">
                 <input type="text" name="search-bar" id="search-bar"  placeholder="Search" />
                 <button  id="search-button" ><ion-icon name="search"></ion-icon></button>
@@ -47,7 +49,7 @@
                 <a class="a1" href="Genre">Genre</a>
                 <a class="a1" href="Favorite">Favorite</a>
                 <a class="a1" href="About">About</a>
-                <button class="bt" onclick="window.location.href='Login '">Login</button>
+                <button class="bt" href="Login">Login</button>
             </nav>
         </div>
         <div class="content">

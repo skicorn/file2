@@ -1,0 +1,75 @@
+﻿@model ThreeSome.Models.MOVIE
+
+@{
+    ViewBag.Title = "Info";
+    Layout = "~/Areas/ADMIN/Views/Shared/adminlayout.cshtml";
+}
+
+<h2>Info</h2>
+
+<div>
+    <h4>MOVIE</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.movieName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.movieName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.movieThumb)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.movieThumb)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.movieDes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.movieDes)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.movieView)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.movieView)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.movieStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.movieStatus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.movieGenre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.movieGenre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.movieURL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.movieURL)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.movieId }) |
+    @Html.ActionLink("Back to List", "MoviePage")
+</p>

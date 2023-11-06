@@ -1,0 +1,11 @@
+﻿@model MovieView
+
+@{
+	ViewBag.Title = Model.Title;
+	Layout = "~/Views/Shared/_FilmLayout.cshtml";
+}
+
+<iframe src="@Model.URL" height="720" width="1280" allowfullscreen>
+</iframe>
+<p>@Model.Title</p>
+

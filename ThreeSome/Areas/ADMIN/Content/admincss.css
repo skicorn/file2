@@ -1,0 +1,55 @@
+﻿
+.content {
+	float: right;
+	width: calc(80%);
+	background-color: #343541;
+	padding: 0px;
+	margin: 0px;
+}
+
+/* CSS cho thanh nav bên trái */
+.nav-bar {
+	display: flex;
+	width:calc(20%);
+	height:620px;
+}
+
+.navbar-sidebar {
+	/* Độ rộng của thanh nav */
+	width: calc(100%);
+	/* Màu nền ban đầu */
+	background-color: #202323;
+	color: white; /* Màu chữ ban đầu */
+	margin-right: 0px;
+}
+
+/* CSS cho danh sách ul */
+.list-nav {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+/* CSS cho các mục danh sách li */
+.list-nav li {
+	padding: 10px 0;
+}
+
+/* CSS khi hover */
+	.list-nav li:hover {
+		background-color: #343541; /* Màu nền khi hover */
+		color: #fff; /* Màu chữ khi hover */
+		transition: 0.3s;
+		border-radius: 5px;
+	}
+
+/* CSS cho các li có thẻ a */
+.list-nav li a {
+	color: inherit;
+	text-decoration: none;
+}
+
+/* CSS cho biểu tượng (FontAwesome) trong thẻ a */
+.list-nav li a i {
+	margin-right: 10px;
+}

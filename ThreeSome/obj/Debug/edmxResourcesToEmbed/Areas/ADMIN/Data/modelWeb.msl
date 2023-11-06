@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DATAWEBPHIMModel1StoreContainer" CdmEntityContainer="DATAWEBPHIMEntities1">
+    <EntitySetMapping Name="EPISODES">
+      <EntityTypeMapping TypeName="DATAWEBPHIMModel1.EPISODE">
+        <MappingFragment StoreEntitySet="EPISODES">
+          <ScalarProperty Name="epID" ColumnName="epID" />
+          <ScalarProperty Name="epURL" ColumnName="epURL" />
+          <ScalarProperty Name="epNum" ColumnName="epNum" />
+          <ScalarProperty Name="movie_ID" ColumnName="movie_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GENREs">
+      <EntityTypeMapping TypeName="DATAWEBPHIMModel1.GENRE">
+        <MappingFragment StoreEntitySet="GENRE">
+          <ScalarProperty Name="genreID" ColumnName="genreID" />
+          <ScalarProperty Name="genreName" ColumnName="genreName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MOVIEs">
+      <EntityTypeMapping TypeName="DATAWEBPHIMModel1.MOVIE">
+        <MappingFragment StoreEntitySet="MOVIE">
+          <ScalarProperty Name="movieId" ColumnName="movieId" />
+          <ScalarProperty Name="movieName" ColumnName="movieName" />
+          <ScalarProperty Name="movieThumb" ColumnName="movieThumb" />
+          <ScalarProperty Name="movieDes" ColumnName="movieDes" />
+          <ScalarProperty Name="movieView" ColumnName="movieView" />
+          <ScalarProperty Name="movieStatus" ColumnName="movieStatus" />
+          <ScalarProperty Name="movieGenre" ColumnName="movieGenre" />
+          <ScalarProperty Name="movieURL" ColumnName="movieURL" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MOVSTATUS">
+      <EntityTypeMapping TypeName="DATAWEBPHIMModel1.MOVSTATU">
+        <MappingFragment StoreEntitySet="MOVSTATUS">
+          <ScalarProperty Name="statusID" ColumnName="statusID" />
+          <ScalarProperty Name="statusName" ColumnName="statusName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="USERS">
+      <EntityTypeMapping TypeName="DATAWEBPHIMModel1.USER">
+        <MappingFragment StoreEntitySet="USERS">
+          <ScalarProperty Name="userID" ColumnName="userID" />
+          <ScalarProperty Name="userName" ColumnName="userName" />
+          <ScalarProperty Name="userPass" ColumnName="userPass" />
+          <ScalarProperty Name="userRole" ColumnName="userRole" />
+          <ScalarProperty Name="userLikeMov" ColumnName="userLikeMov" />
+          <ScalarProperty Name="userType_ID" ColumnName="userType_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="USERTYPEs">
+      <EntityTypeMapping TypeName="DATAWEBPHIMModel1.USERTYPE">
+        <MappingFragment StoreEntitySet="USERTYPE">
+          <ScalarProperty Name="ustype_id" ColumnName="ustype_id" />
+          <ScalarProperty Name="ustype_name" ColumnName="ustype_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

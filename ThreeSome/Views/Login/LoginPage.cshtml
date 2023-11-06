@@ -1,0 +1,46 @@
+﻿@model ThreeSome.Models.USER
+
+@{
+	ViewBag.Title = "Đăng nhập";
+	Layout = "~/Views/Shared/_FilmLayout.cshtml";
+}
+<link href="~/Content/Css/Login-Register.css" rel="stylesheet" />
+@using (Html.BeginForm("AuthenLogin", "Login", FormMethod.Post))
+{
+	<div class="login-page">
+
+		<!--	<input class="user-name" type="text" name="user-name" placeholder="UserName" />-->
+		<table>
+			<tr>
+				<td>@Html.TextBoxFor(s => s.userName, new { @class = "user-name", placeholder = "Nhập tên đăng nhập của mày" })</td>
+			</tr>
+			<tr>
+				<td>@Html.TextBoxFor(s => s.userPass, new { @class = "password" , placeholder = "Nhập mật khẩu của mày"})</td>
+			</tr>
+			<tr>
+				<td>
+					<input type="submit" value="LOGIN" class="login" />
+					<div style="text-align:center;color:red">
+						@if (ViewBag.ErrorLog != null)
+						{
+							<h5>@ViewBag.ErrorLog</h5>
+						}
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td style="text-align:center">
+					<a href="@Url.Action("Register","Login")">
+						<input type="button" value="REGISTER"  class="register"/>
+					</a>
+				</td>
+			</tr>
+		</table>
+		<!--	<input class="password" type="password" name="password" placeholder="Password" />
+		<button class="login">Login</button>
+		<a href="#" style="text-decoration:none;color:azure">Forgot Password</a>
+		<a href="Register"><button class="register">Register</button></a>-->
+	</div>
+}
+
+

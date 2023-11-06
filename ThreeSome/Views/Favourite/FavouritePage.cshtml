@@ -1,0 +1,20 @@
+﻿@model IEnumerable<ThreeSome.LikedVideo>
+
+@{
+	ViewBag.Title = "FavouritePage";
+	Layout = "~/Areas/ADMIN/Views/Shared/adminlayout.cshtml";
+}
+
+@foreach (var item in Model)
+{
+	<a href="@Url.Action("Video", "Video", new {id = item.movID})">
+		<div class="col">
+			<img class="size-img" src="@Url.Content(item.movieThumb)" alt="" />
+			<div class="box-video">
+				<p class="card-title">@Url.Content(item.movieName)</p>
+				<p class="card-title-view">@item.movieView</p><span>view</span>
+			</div>
+		</div>
+	</a>
+}
+

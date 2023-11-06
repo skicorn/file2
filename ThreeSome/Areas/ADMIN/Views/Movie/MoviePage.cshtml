@@ -1,0 +1,78 @@
+﻿@model IEnumerable<ThreeSome.Models.MOVIE>
+
+@{
+    ViewBag.Title = "MoviePage";
+    Layout = "~/Areas/ADMIN/Views/Shared/adminlayout.cshtml";
+}
+
+<h2>MoviePage</h2>
+<style>
+	.table {
+		border-spacing: 0 20px; /* 10px là khoảng cách dọc giữa các dòng */
+	}
+</style>
+<p>
+	@Html.ActionLink("Tạo mới phim", "Create", new { @class = "btn btn-success"})
+</p>
+<table class="table" style="color:white; word-wrap:anywhere">
+	<tr>
+		<th>
+			@Html.DisplayNameFor(model => model.movieId)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.movieName)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.movieThumb)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.movieDes)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.movieStatus)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.movieGenre)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.movieURL)
+		</th>
+		<th></th>
+	</tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.movieName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.movieThumb)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.movieDes)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.movieStatus)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.movieGenre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.movieURL)
+        </td>
+        <td>
+            <a href="@Url.Action("Edit","Movie", new { id=item.movieId})">
+				<img src="~/Content/Img/edit.png"/>
+			</a>
+			<a href="@Url.Action("Delete","Movie", new { id=item.movieId})">
+				<img src="~/Content/Img/delete.png" />
+			</a>
+			<a href="@Url.Action("Info","Movie", new { id=item.movieId})">
+				<img src="~/Content/Img/info.png" />
+			</a>
+        </td>
+    </tr>
+}
+
+</table>

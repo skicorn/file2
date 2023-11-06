@@ -1,0 +1,52 @@
+﻿@model IEnumerable<ThreeSome.Models.USER>
+
+@{
+    ViewBag.Title = "UserPage";
+    Layout = "~/Areas/ADMIN/Views/Shared/adminlayout.cshtml";
+}
+
+<h2>UserPage</h2>
+
+<p>
+    @Html.ActionLink("Tạo mới user", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.userName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.userPass)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.userRole)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+	<tr>
+		<td>
+			@Html.DisplayFor(modelItem => item.userName)
+		</td>
+		<td>
+			@Html.DisplayFor(modelItem => item.userPass)
+		</td>
+		<td>
+			@Html.DisplayFor(modelItem => item.userRole)
+		</td>
+		<td>
+			<a href="@Url.Action("Edit","User", new { id=item.userID})">
+				<img src="~/Content/Img/edit.png" />
+			</a>
+			<a href="@Url.Action("Delete","User", new { id=item.userID})">
+				<img src="~/Content/Img/delete.png" />
+			</a>
+			<a href="@Url.Action("Info","User", new { id=item.userID})">
+				<img src="~/Content/Img/info.png" />
+			</a>
+		</td>
+	</tr>
+}
+
+</table>

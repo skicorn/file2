@@ -45,10 +45,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -120,13 +128,59 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\ADMIN\ADMINAreaRegistration.cs" />
+    <Compile Include="Areas\ADMIN\Controllers\AdminController.cs" />
+    <Compile Include="Areas\ADMIN\Controllers\GenreController.cs" />
+    <Compile Include="Areas\ADMIN\Controllers\MovieController.cs" />
+    <Compile Include="Areas\ADMIN\Controllers\UserController.cs" />
+    <Compile Include="Controllers\FavouriteController.cs" />
+    <Compile Include="Controllers\GenreController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\VideoController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="LikedVideo.cs" />
+    <Compile Include="Models\EPISODE.cs">
+      <DependentUpon>modelWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GENRE.cs">
+      <DependentUpon>modelWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\modelWeb.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>modelWeb.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\modelWeb.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>modelWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\modelWeb.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>modelWeb.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MOVIE.cs">
+      <DependentUpon>modelWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MOVSTATU.cs">
+      <DependentUpon>modelWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\USER.cs">
+      <DependentUpon>modelWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\USERTYPE.cs">
+      <DependentUpon>modelWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MovieView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="VideoView.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\ADMIN\Content\admincss.css" />
     <Content Include="Content\Bootstrap\bootstrap-grid.css" />
     <Content Include="Content\Bootstrap\bootstrap-grid.min.css" />
     <Content Include="Content\Bootstrap\bootstrap-grid.rtl.css" />
@@ -149,15 +203,52 @@
     <Content Include="Content\Img\3sumteam.png" />
     <Content Include="Content\Img\chill.jpg" />
     <Content Include="Content\Img\crytsal-blue-cube-4k-ku.jpg" />
+    <Content Include="Content\Img\edit.png" />
+    <Content Include="Content\Img\info.png" />
+    <Content Include="Content\Img\delete.png" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Bootstrap\Site.css" />
+    <Content Include="Models\modelWeb.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>modelWeb.Context.cs</LastGenOutput>
+      <DependentUpon>modelWeb.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\modelWeb.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>modelWeb.edmx</DependentUpon>
+      <LastGenOutput>modelWeb.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
     <Content Include="Scripts\bootstrap.esm.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <EntityDeploy Include="Models\modelWeb.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>modelWeb.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\modelWeb.edmx.diagram">
+      <DependentUpon>modelWeb.edmx</DependentUpon>
+    </Content>
+    <Content Include="Areas\ADMIN\Views\web.config" />
+    <Content Include="Areas\ADMIN\Views\Shared\adminlayout.cshtml" />
+    <Content Include="Areas\ADMIN\Views\Movie\MoviePage.cshtml" />
+    <Content Include="Areas\ADMIN\Views\Movie\Create.cshtml" />
+    <Content Include="Areas\ADMIN\Views\Movie\Delete.cshtml" />
+    <Content Include="Areas\ADMIN\Views\Movie\Info.cshtml" />
+    <Content Include="Areas\ADMIN\Views\Movie\Edit.cshtml" />
+    <Content Include="Areas\ADMIN\Views\Genre\GenrePage.cshtml" />
+    <Content Include="Areas\ADMIN\Views\Genre\Create.cshtml" />
+    <Content Include="Areas\ADMIN\Views\Genre\Delete.cshtml" />
+    <Content Include="Areas\ADMIN\Views\Genre\Edit.cshtml" />
+    <Content Include="Areas\ADMIN\Views\User\UserPage.cshtml" />
+    <Content Include="Areas\ADMIN\Views\User\Create.cshtml" />
+    <Content Include="Areas\ADMIN\Views\User\Delete.cshtml" />
+    <Content Include="Areas\ADMIN\Views\User\Info.cshtml" />
+    <Content Include="Areas\ADMIN\Views\User\Edit.cshtml" />
+    <Content Include="Areas\ADMIN\Views\Admin\AdminPage.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -181,15 +272,18 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_FilmLayout.cshtml" />
-    <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Home\Trending.cshtml" />
-    <Content Include="Views\Home\Register.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Video\Video.cshtml" />
+    <Content Include="Views\Genre\Genre.cshtml" />
+    <Content Include="Views\Login\LoginPage.cshtml" />
+    <Content Include="Views\Login\Register.cshtml" />
+    <Content Include="Views\Favourite\FavouritePage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
+    <Folder Include="Areas\ADMIN\Data\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Bootstrap\bootstrap.rtl.min.css.map" />
@@ -217,6 +311,9 @@
     <Content Include="Scripts\bootstrap.bundle.js.map" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

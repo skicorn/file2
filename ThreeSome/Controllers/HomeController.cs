@@ -3,29 +3,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ThreeSome.Models;
 
 namespace ThreeSome.Controllers
 {
     public class HomeController : Controller
     {
+        DATAWEBPHIMEntities database = new DATAWEBPHIMEntities();
         public ActionResult Register()
         {
             return View();
         }
         public ActionResult Index()
         {
-            return View();
-        }
-        public ActionResult Login()
-        {
-            return View();
+            return View(database.MOVIEs.ToList());
         }
 
         public ActionResult Trending()
         {
             return View();
         }
-
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
